@@ -8,7 +8,7 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <style>
         :root { --blue: #38bdf8; --dark: #0f172a; }
-        body, html { margin: 0; padding: 0; font-family: 'Outfit', sans-serif; color: white; min-height: 100vh; overflow-x: hidden; background: #0f172a; }
+        body, html { margin: 0; padding: 0; font-family: 'Outfit', sans-serif; color: white; min-height: 100vh; overflow-x: hidden; background: none; }
         #bg-overlay { position: fixed; inset: 0; background: linear-gradient(to bottom, rgba(255,255,255,0.4) 0%, rgba(0,0,0,0.7) 100%); z-index: -1; transition: background 2s ease; }
         #weather-canvas { position: fixed; inset: 0; pointer-events: none; z-index: -1; }
         .night-mask { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: -1; display: none; }
@@ -135,14 +135,16 @@
             'es': { welcome: "Parece que aún no has buscado", gps: "Usar Mi Ubicación", feels: "SENSACIÓN", uv: "ÍNDICE UV", t24: "PRONÓSTICO 24 HORAS", t7: "PRONÓSTICO 7 DÍAS", st: { great: "Excelente", good: "Bien", mod: "Moderado", bad: "Pésimo", horrible: "Horrible", danger: "Peligro" }, desc: { 0: "Cielo Despejado", 1: "Mayorm. Despejado", 3: "Nublado", 61: "Lluvia", 71: "Nieve", 95: "Tormenta" } }
         };
 
-        const weatherMeta = { 
-            0: { icon: '☀️', bg: 'linear-gradient(to bottom, #7dd3fc 0%, #0369a1 100%)', type: 'sun' }, 
-            1: { icon: '🌤️', bg: 'linear-gradient(to bottom, #e0f2fe 0%, #075985 100%)', type: 'cloud' }, 
-            3: { icon: '☁️', bg: 'linear-gradient(to bottom, #f1f5f9 0%, #334155 100%)', type: 'cloud' }, 
-            61: { icon: '🌧️', bg: 'linear-gradient(to bottom, #94a3b8 0%, #1e293b 100%)', particle: 'rain' }, 
-            71: { icon: '🌨️', bg: 'linear-gradient(to bottom, #ffffff 0%, #475569 100%)', particle: 'snow' }, 
-            95: { icon: '⛈️', bg: 'linear-gradient(to bottom, #475569 0%, #020617 100%)', particle: 'rain', storm: true } 
+                const weatherMeta = { 
+            0: { icon: '☀️', bg: 'linear-gradient(to bottom, #7dd3fc 0%, #0ea5e9 100%)', type: 'sun' }, 
+            1: { icon: '🌤️', bg: 'linear-gradient(to bottom, #bae6fd 0%, #38bdf8 100%)', type: 'cloud' }, 
+            3: { icon: '☁️', bg: 'linear-gradient(to bottom, #cbd5e1 0%, #64748b 100%)', type: 'cloud' }, 
+            45: { icon: '🌦️', bg: 'linear-gradient(to bottom, #7dd3fc 0%, #94a3b8 100%)', type: 'cloud', particle: 'rain' }, // SOL COM CHUVA
+            61: { icon: '🌧️', bg: 'linear-gradient(to bottom, #94a3b8 0%, #475569 100%)', particle: 'rain' }, 
+            71: { icon: '🌨️', bg: 'linear-gradient(to bottom, #ffffff 0%, #94a3b8 100%)', particle: 'snow' }, 
+            95: { icon: '⛈️', bg: 'linear-gradient(to bottom, #475569 0%, #1e293b 100%)', particle: 'rain', storm: true } 
         };
+        
 
         let currentLang = localStorage.getItem('lang') || navigator.language.split('-')[0] || 'en';
         if(!translations[currentLang]) currentLang = 'en';
