@@ -178,44 +178,53 @@
         }
 
         function updateVisuals(code) { 
-            const meta = weatherMeta[code] || weatherMeta[3]; 
-            const canvas = document.getElementById('weather-canvas'); 
-            const overlay = document.getElementById('bg-overlay'); 
-            const night = document.getElementById('night-overlay'); 
-            const lightning = document.getElementById('lightning');
+    const meta = weatherMeta[code] || weatherMeta[3]; 
+    const canvas = document.getElementById('weather-canvas'); 
+    const overlay = document.getElementById('bg-overlay'); 
+    const night = document.getElementById('night-overlay'); 
+    const lightning = document.getElementById('lightning');
 
-            canvas.innerHTML = ''; 
-            overlay.style.background = meta.bg; 
-            const hr = new Date().getHours(); 
-            night.style.display = (hr >= 18 || hr <= 6) ? 'block' : 'none'; 
-            
-            lightning.style.animation = meta.storm ? "flash 4s infinite" : "none";
+    canvas.innerHTML = ''; 
+    overlay.style.background = meta.bg; 
+    const hr = new Date().getHours(); 
+    night.style.display = (hr >= 18 || hr <= 6) ? 'block' : 'none'; 
+    
+    lightning.style.animation = meta.storm ? "flash 4s infinite" : "none";
 
-            if(meta.type === 'cloud' || meta.storm) {
-                for(let i=0; i<4; i++) {
-                    const c = document.createElement('div');
-                    c.className = 'cloud-element';
-                    c.style.width = (Math.random() * 200 + 200) + 'px';
-                    c.style.height = '100px';
-                    c.style.top = (Math.random() * 40) + '%';
-                    c.style.animationDuration = (Math.random() * 20 + 20) + 's';
-                    c.style.animationDelay = (Math.random() * 10) + 's';
-                    canvas.appendChild(c);
-                }
-            }
-
-            if(meta.particle) { 
-                for(let i=0; i<60; i++) { 
-                    const p = document.createElement('div'); 
-                    p.className = meta.particle === 'rain' ? 'rain-drop' : 'snow-flake'; 
-                    p.style.left = Math.random() * 100 + '%'; 
-                    p.style.animationDuration = (Math.random() * (meta.particle==='snow'?3:0.7) + 0.5) + 's'; 
-                    p.style.animationDelay = Math.random() * 2 + 's'; 
-                    canvas.appendChild(p); 
-                } 
-            } 
-            return translations[currentLang].desc[code] || translations[currentLang].desc[3]; 
+    if(meta.type === 'cloud' || meta.storm) {
+        for(let i=0; i<4; i++) {
+            const c = document.createElement('div');
+            c.className = 'cloud-element';
+            c.style.width = (Math.random() * 200 + 200) + 'px';
+            c.style.height = '100px';
+            c.style.top = (Math.random() * 40) + '%';
+            c.style.animationDuration = (Math.random() * 20 + 20) + 's';
+            c.style.animationDelay = (Math.random() * 10) + 's';
+            canvas.appendChild(c);
         }
+    }
+
+    if(meta.particle) { 
+        for(let i=0; i<60; i++) { 
+            const p = document.createElement('div'); 
+            p.className = meta.particle === 'rain' ? 'rain-drop' : 'snow-flake'; 
+            p.style.left = Math.random() * 100 + '%'; 
+            p.style.animationDuration = (Math.random() * (meta.particle==='snow'?3:0.7) + 0.5) + 's'; 
+            p.style.animationDelay = Math.random() * 2 + 's'; 
+            canvas.appendChild(p); 
+        } 
+    }
+
+    // --- ADICIONE ESTAS LINHAS AQUI ---
+    const isDarkText = (code === 3 || code === 71 || code === undefined);
+    const color = isDarkText ? "#000000" : "#ffffff";
+    document.getElementById('citySearch').style.color = color;
+    document.querySelectorAll('.icon-btn').forEach(btn => btn.style.color = color);
+    // ---------------------------------
+
+    return translations[currentLang].desc[code] || translations[currentLang].desc[3]; 
+                }
+        
 
         async function fetchWeather(lat, lon, name) { 
             const btn = document.getElementById('btnSearch'); 
