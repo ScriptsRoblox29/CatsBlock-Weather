@@ -286,15 +286,26 @@
         } 
     }
 
-    // --- ADICIONE ESTAS LINHAS AQUI ---
-    const isDarkText = (code === 3 || code === 71 || code === undefined);
-    const color = isDarkText ? "#000000" : "#ffffff";
-    document.getElementById('citySearch').style.color = color;
-    document.querySelectorAll('.icon-btn').forEach(btn => btn.style.color = color);
-    // ---------------------------------
+        // --- LÓGICA DE CORES E ÍCONES ---
+    const isNight = (hr >= 18 || hr <= 6);
+    const iconUrl = isNight ? meta.nightIcon : meta.dayIcon;
+    const descText = translations[currentLang].desc[code] || translations[currentLang].desc[3];
 
-    return translations[currentLang].desc[code] || translations[currentLang].desc[3]; 
-                }
+    // Troca o texto pelo Ícone + Texto
+    document.getElementById('main-desc').innerHTML = `
+        <img src="${iconUrl}" style="width:45px; vertical-align:middle; margin-right:10px">
+        <span>${descText}</span>
+    `;
+
+    // Ajuste de contraste do texto da busca
+    const isDarkText = (code === 3 || code === 71);
+    const uiColor = isDarkText ? "#000000" : "#ffffff";
+    document.getElementById('citySearch').style.color = uiColor;
+    document.querySelectorAll('.icon-btn').forEach(btn => btn.style.color = uiColor);
+
+    return descText; 
+        }
+        
         
 
         async function fetchWeather(lat, lon, name) { 
