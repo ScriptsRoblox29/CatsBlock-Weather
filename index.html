@@ -139,49 +139,49 @@
                 const weatherMeta = { 
     // CLEAR: Céu limpo
     0: { 
-        dayIcon: 'https://maps.gstatic.com/weather/v1/sunny_dark.svg', 
-        nightIcon: 'https://maps.gstatic.com/weather/v1/clear_night_dark.svg', 
+        dayIcon: 'https://maps.gstatic.com/weather/v1/sunny.svg', 
+        nightIcon: 'https://maps.gstatic.com/weather/v1/clear.svg', 
         bg: 'linear-gradient(to bottom, #7dd3fc 0%, #0ea5e9 100%)', type: 'sun', pCount: 0 
     }, 
     // PARTLY CLOUDY: Algumas nuvens
     1: { 
-        dayIcon: 'https://maps.gstatic.com/weather/v1/partly_cloudy_day_dark.svg', 
-        nightIcon: 'https://maps.gstatic.com/weather/v1/partly_cloudy_night_dark.svg', 
+        dayIcon: 'https://maps.gstatic.com/weather/v1/partly_cloudy.svg', 
+        nightIcon: 'https://maps.gstatic.com/weather/v1/partly_clear.svg', 
         bg: 'linear-gradient(to bottom, #bae6fd 0%, #38bdf8 100%)', type: 'cloud', pCount: 4 
     },
     2: { 
-        dayIcon: 'https://maps.gstatic.com/weather/v1/mostly_cloudy_day_dark.svg', 
-        nightIcon: 'https://maps.gstatic.com/weather/v1/mostly_cloudy_night_dark.svg', 
+        dayIcon: 'https://maps.gstatic.com/weather/v1/mostly_cloudy.svg', 
+        nightIcon: 'https://maps.gstatic.com/weather/v1/mostly_cloudy_night.svg', 
         bg: 'linear-gradient(to bottom, #94a3b8 0%, #64748b 100%)', type: 'cloud', pCount: 5 
     },
     // CLOUDY: Nublado total
     3: { 
-        dayIcon: 'https://maps.gstatic.com/weather/v1/cloudy_dark.svg', 
-        nightIcon: 'https://maps.gstatic.com/weather/v1/cloudy_dark.svg', 
+        dayIcon: 'https://maps.gstatic.com/weather/v1/cloudy.svg', 
+        nightIcon: 'https://maps.gstatic.com/weather/v1/cloudy.svg', 
         bg: 'linear-gradient(to bottom, #cbd5e1 0%, #64748b 100%)', type: 'cloud', pCount: 8 
     },
     // FOG / MIST: Nevoeiro
     45: { 
-        dayIcon: 'https://maps.gstatic.com/weather/v1/fog_dark.svg', 
-        nightIcon: 'https://maps.gstatic.com/weather/v1/fog_dark.svg', 
+        dayIcon: 'https://maps.gstatic.com/weather/v1/windy_breezy.svg', 
+        nightIcon: 'https://maps.gstatic.com/weather/v1/windy_breezy.svg', 
         bg: 'linear-gradient(to bottom, #94a3b8 0%, #cbd5e1 100%)', type: 'cloud', pCount: 10 
     },
     // LIGHT RAIN: Chuva leve
     61: { 
-        dayIcon: 'https://maps.gstatic.com/weather/v1/light_rain_dark.svg', 
-        nightIcon: 'https://maps.gstatic.com/weather/v1/light_rain_dark.svg', 
+        dayIcon: 'https://maps.gstatic.com/weather/v1/breezy.svg', 
+        nightIcon: 'https://maps.gstatic.com/weather/v1/breezy.svg', 
         bg: 'linear-gradient(to bottom, #94a3b8 0%, #475569 100%)', particle: 'rain', pCount: 60 
     }, 
     // RAIN: Chuva moderada
     63: { 
-        dayIcon: 'https://maps.gstatic.com/weather/v1/rain_dark.svg', 
-        nightIcon: 'https://maps.gstatic.com/weather/v1/rain_dark.svg', 
+        dayIcon: 'https://maps.gstatic.com/weather/v1/scattered_showers.svg', 
+        nightIcon: 'https://maps.gstatic.com/weather/v1/scattered_showers.svg', 
         bg: 'linear-gradient(to bottom, #475569 0%, #1e293b 100%)', particle: 'rain', pCount: 120 
     },
     // HEAVY RAIN: Chuva intensa
     65: { 
-        dayIcon: 'https://maps.gstatic.com/weather/v1/heavy_rain_dark.svg', 
-        nightIcon: 'https://maps.gstatic.com/weather/v1/heavy_rain_dark.svg', 
+        dayIcon: 'https://maps.gstatic.com/weather/v1/showers.svg', 
+        nightIcon: 'https://maps.gstatic.com/weather/v1/showers.svg', 
         bg: 'linear-gradient(to bottom, #1e293b 0%, #020617 100%)', particle: 'rain', pCount: 250 
     }, 
     // HAIL: Granizo (Código 77 na Open-Meteo costuma ser granular)
@@ -192,24 +192,24 @@
     },
     // SNOW: Neve
     71: { 
-        dayIcon: 'https://maps.gstatic.com/weather/v1/light_snow_dark.svg', 
-        nightIcon: 'https://maps.gstatic.com/weather/v1/light_snow_dark.svg', 
+        dayIcon: 'https://maps.gstatic.com/weather/v1/flurries.svg', 
+        nightIcon: 'https://maps.gstatic.com/weather/v1/flurries.svg', 
         bg: 'linear-gradient(to bottom, #ffffff 0%, #94a3b8 100%)', particle: 'snow', pCount: 60 
     },
     73: { 
-        dayIcon: 'https://maps.gstatic.com/weather/v1/snow_dark.svg', 
-        nightIcon: 'https://maps.gstatic.com/weather/v1/snow_dark.svg', 
+        dayIcon: 'https://maps.gstatic.com/weather/v1/scattered_snow.svg', 
+        nightIcon: 'https://maps.gstatic.com/weather/v1/scattered_snow.svg', 
         bg: 'linear-gradient(to bottom, #ffffff 0%, #cbd5e1 100%)', particle: 'snow', pCount: 120 
     },
     // THUNDERSTORM: Tempestades
     95: { 
-        dayIcon: 'https://maps.gstatic.com/weather/v1/thunderstorm_dark.svg', 
-        nightIcon: 'https://maps.gstatic.com/weather/v1/thunderstorm_dark.svg', 
+        dayIcon: 'https://maps.gstatic.com/weather/v1/strong_tstorms.svg', 
+        nightIcon: 'https://maps.gstatic.com/weather/v1/strong_tstorms.svg', 
         bg: 'linear-gradient(to bottom, #475569 0%, #1e293b 100%)', particle: 'rain', storm: true, pCount: 150 
     },
     99: { 
-        dayIcon: 'https://maps.gstatic.com/weather/v1/heavy_thunderstorm_dark.svg', 
-        nightIcon: 'https://maps.gstatic.com/weather/v1/heavy_thunderstorm_dark.svg', 
+        dayIcon: 'https://maps.gstatic.com/weather/v1/strong_tstorms.svg', 
+        nightIcon: 'https://maps.gstatic.com/weather/v1/strong_tstorms.svg', 
         bg: 'linear-gradient(to bottom, #020617 0%, #1e293b 100%)', particle: 'rain', storm: true, pCount: 300 
     } 
 };
