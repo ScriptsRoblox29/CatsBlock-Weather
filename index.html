@@ -309,52 +309,87 @@
         
 
         async function fetchWeather(lat, lon, name) { 
-            const btn = document.getElementById('btnSearch'); 
-            btn.disabled = true; 
-            try { 
-                const w = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,apparent_temperature,weather_code,relative_humidity_2m,uv_index,pressure_msl&hourly=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto`).then(r=>r.json()); 
-                document.getElementById('landing-page').style.display = 'none'; 
-                document.getElementById('main-display').style.display = 'block'; 
-                document.getElementById('city-name').innerText = name; 
-                document.getElementById('main-temp').innerText = Math.round(w.current.temperature_2m) + "°"; 
-                document.getElementById('val-pres').innerText = Math.round(w.current.pressure_msl) + " hPa"; 
-                document.getElementById('main-desc').innerText = updateVisuals(w.current.weather_code); 
-                
-                const fVal = Math.round(w.current.apparent_temperature); 
-                const fStat = getStatusLabels(fVal, 'temp'); 
-                document.getElementById('val-feels').innerText = fVal + "°"; 
-                document.getElementById('badge-feels').innerText = fStat.text; 
-                document.getElementById('badge-feels').style.background = fStat.color; 
-                
-                const hum = w.current.relative_humidity_2m; 
-                document.getElementById('val-hum').innerText = hum + "%"; 
-                document.getElementById('hum-prog').style.strokeDashoffset = 188.5 - (188.5 * hum / 100); 
-                
-                const uv = w.current.uv_index; 
-                const uStat = getStatusLabels(uv, 'uv'); 
-                document.getElementById('val-uv').innerText = uv; 
-                document.getElementById('badge-uv').innerText = uStat.text; 
-                document.getElementById('badge-uv').style.background = uStat.color; 
-                document.getElementById('uv-fill').style.background = uStat.color; 
-                document.getElementById('uv-fill').style.width = Math.min((uv/11)*100, 100) + "%"; 
-                
-                const hList = document.getElementById('hourly-list'); 
-                hList.innerHTML = ''; 
-                const nowH = new Date().getHours(); 
-                for(let i=nowH; i<nowH+24; i++) { 
-                    const hCode = w.hourly.weather_code[i]; 
-                    hList.innerHTML += `<div class="item-24h"><small>${i%24}:00</small><br><span style="font-size:1.4rem;display:block;margin:8px 0">${weatherMeta[hCode]?.icon || '☁️'}</span><b>${Math.round(w.hourly.temperature_2m[i])}°</b></div>`; 
-                } 
-                
-                const dList = document.getElementById('daily-list'); 
-                dList.innerHTML = ''; 
-                w.daily.time.forEach((day, i) => { 
-                    const date = new Date(day + "T00:00:00"); 
-                    const dCode = w.daily.weather_code[i]; 
-                    dList.innerHTML += `<div class="daily-row"><span style="flex:1; text-align:left; font-weight:600">${date.toLocaleDateString(currentLang, {weekday:'long'})}</span><span style="font-size:1.5rem">${weatherMeta[dCode]?.icon || '☁️'}</span><b style="width:60px; text-align:right; font-size:1.1rem">${Math.round(w.daily.temperature_2m_max[i])}°</b></div>`; 
-                }); 
-            } catch(e) { console.error(e); } finally { btn.disabled = false; } 
+    const btn = document.getElementById('btnSearch'); 
+    btn.disabled = true; 
+    try { 
+        const w = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,apparent_temperature,weather_code,relative_humidity_2m,uv_index,pressure_msl&hourly=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto`).then(r=>r.json()); 
+        
+        document.getElementById('landing-page').style.display = 'none'; 
+        document.getElementById('main-display').style.display = 'block'; 
+        document.getElementById('city-name').innerText = name; 
+        document.getElementById('main-temp').innerText = Math.round(w.current.temperature_2m) + "°"; 
+        document.getElementById('val-pres').innerText = Math.round(w.current.pressure_msl) + " hPa"; 
+        
+        // Atualiza visual e pega o texto da descrição
+        const desc = updateVisuals(w.current.weather_code);
+        // O ícone principal já é injetado pelo updateVisuals no main-desc, 
+        // então aqui apenas garantimos que o texto esteja correto se necessário.
+
+        const fVal = Math.round(w.current.apparent_temperature); 
+        const fStat = getStatusLabels(fVal, 'temp'); 
+        document.getElementById('val-feels').innerText = fVal + "°"; 
+        document.getElementById('badge-feels').innerText = fStat.text; 
+        document.getElementById('badge-feels').style.background = fStat.color; 
+        
+        const hum = w.current.relative_humidity_2m; 
+        document.getElementById('val-hum').innerText = hum + "%"; 
+        document.getElementById('hum-prog').style.strokeDashoffset = 188.5 - (188.5 * hum / 100); 
+        
+        const uv = w.current.uv_index; 
+        const uStat = getStatusLabels(uv, 'uv'); 
+        document.getElementById('val-uv').innerText = uv; 
+        document.getElementById('badge-uv').innerText = uStat.text; 
+        document.getElementById('badge-uv').style.background = uStat.color; 
+        document.getElementById('uv-fill').style.background = uStat.color; 
+        document.getElementById('uv-fill').style.width = Math.min((uv/11)*100, 100) + "%"; 
+        
+        // --- LISTA 24 HORAS CORRIGIDA ---
+        const hList = document.getElementById('hourly-list'); 
+        hList.innerHTML = ''; 
+        const nowH = new Date().getHours(); 
+        for(let i = nowH; i < nowH + 24; i++) { 
+            const hCode = w.hourly.weather_code[i]; 
+            const hour = i % 24;
+            const isNight = (hour >= 18 || hour <= 6);
+            const meta = weatherMeta[hCode] || weatherMeta[3];
+            const iconUrl = isNight ? meta.nightIcon : meta.dayIcon;
+
+            hList.innerHTML += `
+                <div class="item-24h">
+                    <small>${hour}:00</small><br>
+                    <img src="${iconUrl}" style="width:30px; margin:8px 0; display:inline-block">
+                    <br><b>${Math.round(w.hourly.temperature_2m[i])}°</b>
+                </div>`; 
+        } 
+        
+        // --- LISTA 7 DIAS CORRIGIDA ---
+        const dList = document.getElementById('daily-list'); 
+        dList.innerHTML = ''; 
+        w.daily.time.forEach((day, i) => { 
+            const date = new Date(day + "T00:00:00"); 
+            const dCode = w.daily.weather_code[i]; 
+            const meta = weatherMeta[dCode] || weatherMeta[3];
+            
+            dList.innerHTML += `
+                <div class="daily-row">
+                    <span style="flex:1; text-align:left; font-weight:600; text-transform:capitalize">
+                        ${date.toLocaleDateString(currentLang, {weekday:'long'})}
+                    </span>
+                    <img src="${meta.dayIcon}" style="width:28px; margin:0 10px">
+                    <b style="width:60px; text-align:right; font-size:1.1rem">
+                        ${Math.round(w.daily.temperature_2m_max[i])}°
+                    </b>
+                </div>`; 
+        }); 
+
+    } catch(e) { 
+        console.error(e); 
+    } finally { 
+        btn.disabled = false; 
+    } 
         }
+        
+                
 
         async function search() { const val = document.getElementById('citySearch').value; if(!val) return; const geo = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${val}&count=1&format=json`).then(r=>r.json()); if(geo.results) fetchWeather(geo.results[0].latitude, geo.results[0].longitude, geo.results[0].name); }
         async function getByGPS() { navigator.geolocation.getCurrentPosition(async (pos) => { const { latitude, longitude } = pos.coords; const geo = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`).then(r=>r.json()); fetchWeather(latitude, longitude, geo.address.city || geo.address.town || "Location"); }); }
