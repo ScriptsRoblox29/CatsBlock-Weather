@@ -137,14 +137,24 @@
         };
 
                 const weatherMeta = { 
-            0: { icon: '☀️', bg: 'linear-gradient(to bottom, #7dd3fc 0%, #0ea5e9 100%)', type: 'sun' }, 
-            1: { icon: '🌤️', bg: 'linear-gradient(to bottom, #bae6fd 0%, #38bdf8 100%)', type: 'cloud' }, 
-            3: { icon: '☁️', bg: 'linear-gradient(to bottom, #cbd5e1 0%, #64748b 100%)', type: 'cloud' }, 
-            45: { icon: '🌦️', bg: 'linear-gradient(to bottom, #7dd3fc 0%, #94a3b8 100%)', type: 'cloud', particle: 'rain' }, // SOL COM CHUVA
-            61: { icon: '🌧️', bg: 'linear-gradient(to bottom, #94a3b8 0%, #475569 100%)', particle: 'rain' }, 
-            71: { icon: '🌨️', bg: 'linear-gradient(to bottom, #ffffff 0%, #94a3b8 100%)', particle: 'snow' }, 
-            95: { icon: '⛈️', bg: 'linear-gradient(to bottom, #475569 0%, #1e293b 100%)', particle: 'rain', storm: true } 
-        };
+    // CLEAR: Céu limpo
+    0: { iconBase: 'sunny', nightBase: 'clear_night', bg: 'linear-gradient(to bottom, #7dd3fc 0%, #0ea5e9 100%)', type: 'sun', pCount: 0 }, 
+    // MOSTLY_CLEAR / PARTLY_CLOUDY: Parcialmente nublado
+    1: { iconBase: 'partly_cloudy_day', nightBase: 'partly_cloudy_night', bg: 'linear-gradient(to bottom, #bae6fd 0%, #38bdf8 100%)', type: 'cloud', pCount: 4 }, 
+    // CLOUDY: Nublado
+    3: { iconBase: 'cloudy', nightBase: 'cloudy', bg: 'linear-gradient(to bottom, #cbd5e1 0%, #64748b 100%)', type: 'cloud', pCount: 6 }, 
+    // LIGHT_RAIN: Chuva leve
+    61: { iconBase: 'light_rain', nightBase: 'light_rain', bg: 'linear-gradient(to bottom, #94a3b8 0%, #475569 100%)', particle: 'rain', pCount: 50 }, 
+    // RAIN: Chuva moderada
+    63: { iconBase: 'rain', nightBase: 'rain', bg: 'linear-gradient(to bottom, #475569 0%, #1e293b 100%)', particle: 'rain', pCount: 100 },
+    // HEAVY_RAIN: Chuva intensa
+    65: { iconBase: 'heavy_rain', nightBase: 'heavy_rain', bg: 'linear-gradient(to bottom, #1e293b 0%, #020617 100%)', particle: 'rain', pCount: 200 }, 
+    // LIGHT_SNOW: Pouca neve
+    71: { iconBase: 'light_snow', nightBase: 'light_snow', bg: 'linear-gradient(to bottom, #ffffff 0%, #94a3b8 100%)', particle: 'snow', pCount: 50 }, 
+    // THUNDERSTORM: Trovoada
+    95: { iconBase: 'thunderstorm', nightBase: 'thunderstorm', bg: 'linear-gradient(to bottom, #475569 0%, #1e293b 100%)', particle: 'rain', storm: true, pCount: 150 } 
+};
+        
         
 
         let currentLang = localStorage.getItem('lang') || navigator.language.split('-')[0] || 'en';
