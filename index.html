@@ -130,11 +130,63 @@
     </div>
     <script>
         const translations = {
-            'en': { welcome: "It appears you haven't searched yet", gps: "Use My Location", feels: "FEELS LIKE", uv: "UV INDEX", t24: "24 HOURS FORECAST", t7: "7 DAYS FORECAST", st: { great: "Great", good: "Good", mod: "Moderate", bad: "Bad", horrible: "Horrible", danger: "Dangerous" }, desc: { 0: "Clear Sky", 1: "Mainly Clear", 3: "Overcast", 61: "Rain", 71: "Snow", 95: "Storm" } },
-            'pt-br': { welcome: "Parece que você ainda não pesquisou", gps: "Usar Minha Localização", feels: "SENSAÇÃO", uv: "ÍNDICE UV", t24: "PREVISÃO 24 HORAS", t7: "PREVISÃO 7 DIAS", st: { great: "Ótimo", good: "Bom", mod: "Médio", bad: "Péssimo", horrible: "Horrível", danger: "Perigoso" }, desc: { 0: "Céu Limpo", 1: "Predom. Limpo", 3: "Nublado", 61: "Chuva", 71: "Neve", 95: "Tempestade" } },
-            'pt-pt': { welcome: "Parece que ainda não pesquisou", gps: "Usar Minha Localização", feels: "SENSAÇÃO", uv: "ÍNDICE UV", t24: "PREVISÃO 24 HORAS", t7: "PREVISÃO 7 DIAS", st: { great: "Excelente", good: "Bom", mod: "Moderado", bad: "Mau", horrible: "Horrível", danger: "Perigo" }, desc: { 0: "Céu Limpo", 1: "Poucas Nuvens", 3: "Muito Nublado", 61: "Chuva", 71: "Neve", 95: "Trovoada" } },
-            'es': { welcome: "Parece que aún no has buscado", gps: "Usar Mi Ubicación", feels: "SENSACIÓN", uv: "ÍNDICE UV", t24: "PRONÓSTICO 24 HORAS", t7: "PRONÓSTICO 7 DÍAS", st: { great: "Excelente", good: "Bien", mod: "Moderado", bad: "Pésimo", horrible: "Horrible", danger: "Peligro" }, desc: { 0: "Cielo Despejado", 1: "Mayorm. Despejado", 3: "Nublado", 61: "Lluvia", 71: "Nieve", 95: "Tormenta" } }
-        };
+    'en': { 
+        welcome: "It appears you haven't searched yet", gps: "Use My Location", feels: "FEELS LIKE", uv: "UV INDEX", t24: "24 HOURS FORECAST", t7: "7 DAYS FORECAST", 
+        st: { great: "Great", good: "Good", mod: "Moderate", bad: "Bad", horrible: "Horrible", danger: "Dangerous" }, 
+        desc: { 
+            0: "Sunny", 1: "Mostly clear", 2: "Partly cloudy", 3: "Cloudy", 
+            45: "Mist", 48: "Fog", 51: "Chance of showers", 53: "Chance of showers", 55: "Chance of showers",
+            61: "Light rain", 63: "Moderate rain", 65: "Heavy rain", 
+            80: "Light rain showers", 81: "Rain showers", 82: "Heavy rain showers",
+            95: "Thunderstorm", 96: "Scattered thunderstorms", 99: "Heavy thunderstorm",
+            71: "Light snow", 73: "Snow", 75: "Heavy snow", 77: "Hail",
+            85: "Snow showers", 86: "Blowing snow", 66: "Rain and snow", 67: "Wind and rain"
+        } 
+    },
+    'pt-br': { 
+        welcome: "Parece que você ainda não pesquisou", gps: "Usar Minha Localização", feels: "SENSAÇÃO", uv: "ÍNDICE UV", t24: "PREVISÃO 24 HORAS", t7: "PREVISÃO 7 DIAS", 
+        st: { great: "Ótimo", good: "Bom", mod: "Médio", bad: "Péssimo", horrible: "Horrível", danger: "Perigoso" }, 
+        desc: { 
+            0: "Sol", 1: "Sol com pouca nuvem", 2: "Parcialmente nublado", 3: "Nublado total", 
+            45: "Névoa/Neblina", 48: "Nevoeiro denso", 
+            51: "Possibilidade de chuva", 53: "Possibilidade de chuva", 55: "Possibilidade de chuva",
+            61: "Chuva leve", 63: "Chuva moderada", 65: "Chuva intensa", 
+            80: "Pancadas leves", 81: "Pancadas de chuva", 82: "Pancadas fortes",
+            95: "Trovoada/Tempestade", 96: "Tempestades esparsas", 99: "Tempestade pesada",
+            71: "Pouca neve", 73: "Neve moderada", 75: "Neve intensa", 77: "Granizo",
+            85: "Pancadas de neve", 86: "Neve com vento", 66: "Chuva e neve misturadas", 67: "Vento com chuva"
+        } 
+    },
+    'pt-pt': { 
+        welcome: "Parece que ainda não pesquisou", gps: "Usar Minha Localização", feels: "SENSAÇÃO", uv: "ÍNDICE UV", t24: "PREVISÃO 24 HORAS", t7: "PREVISÃO 7 DIAS", 
+        st: { great: "Excelente", good: "Bom", mod: "Moderado", bad: "Mau", horrible: "Horrível", danger: "Perigo" }, 
+        desc: { 
+            0: "Sol", 1: "Sol com poucas nuvens", 2: "Parcialmente nublado", 3: "Muito nublado", 
+            45: "Neblina", 48: "Nevoeiro", 
+            51: "Possibilidade de aguaceiros", 53: "Possibilidade de aguaceiros", 55: "Possibilidade de aguaceiros",
+            61: "Chuva fraca", 63: "Chuva", 65: "Chuva forte", 
+            80: "Aguaceiros fracos", 81: "Aguaceiros", 82: "Aguaceiros fortes",
+            95: "Trovoada", 96: "Trovoadas esparsas", 99: "Trovoada forte",
+            71: "Neve fraca", 73: "Neve", 75: "Neve forte", 77: "Granizo",
+            85: "Aguaceiros de neve", 86: "Neve com vento", 66: "Chuva e neve", 67: "Vento e chuva"
+        } 
+    },
+    'es': { 
+        welcome: "Parece que aún no has buscado", gps: "Usar Mi Ubicación", feels: "SENSACIÓN", uv: "ÍNDICE UV", t24: "PRONÓSTICO 24 HORAS", t7: "PRONÓSTICO 7 DÍAS", 
+        st: { great: "Excelente", good: "Bien", mod: "Moderado", bad: "Pésimo", horrible: "Horrible", danger: "Peligro" }, 
+        desc: { 
+            0: "Soleado", 1: "Sol con pocas nubes", 2: "Parcialmente nublado", 3: "Nublado", 
+            45: "Niebla", 48: "Neblina densa", 
+            51: "Posibilidad de lluvia", 53: "Posibilidad de lluvia", 55: "Posibilidad de lluvia",
+            61: "Lluvia ligera", 63: "Lluvia moderada", 65: "Lluvia intensa", 
+            80: "Chubascos ligeros", 81: "Chubascos", 82: "Chubascos fuertes",
+            95: "Tormenta", 96: "Tormentas dispersas", 99: "Tormenta pesada",
+            71: "Nieve ligera", 73: "Nieve", 75: "Nieve intensa", 77: "Granizo",
+            85: "Chubascos de nieve", 86: "Nieve con viento", 66: "Lluvia y nieve", 67: "Viento con lluvia"
+        } 
+    }
+};
+        
 
                 const weatherMeta = { 
     // CLEAR: Céu limpo
