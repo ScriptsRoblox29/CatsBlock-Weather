@@ -492,8 +492,8 @@
         btn.disabled = false; 
     } 
         }
-        
-        async function search() { const v = document.getElementById('citySearch').value; if(!v) return; try { const g = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${v}&count=1&format=json`).then(r=>r.json()); g.results ? fetchWeather(g.results[0].latitude, g.results[0].longitude, g.results[0].name) : alert("City not found"); } catch(e) { alert("The server denied the connection. " + e.message); } }
+
+        async function search() { const v = document.getElementById('citySearch').value; if(!v) return; try { const d = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=5da6a9677624447a8d8145541261202&q=${v}&days=7&lang=pt`).then(r=>r.json()); d.error ? alert("City not found") : fetchWeather(d.location.lat, d.location.lon, d.location.name, d.current.condition.code); } catch(e) { alert("Error: " + e.message); } }                      
         async function getByGPS() { navigator.geolocation.getCurrentPosition(async (p) => { try { const {latitude: lt, longitude: lg} = p.coords, g = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lt}&lon=${lg}`).then(r=>r.json()); (g && g.address) ? fetchWeather(lt, lg, g.address.city || g.address.town || "Location") : alert("Broken Location."); } catch(e) { alert("The server denied the connection. " + e.message); } }, () => alert("Location denied. Please change your permissions with the site."), {enableHighAccuracy: false, timeout: 5000, maximumAge: Infinity}); }
         function toggleModal() { const m = document.getElementById('config-modal'); m.style.display = m.style.display==='flex'?'none':'flex'; }
         function setLang(l) { currentLang = l; localStorage.setItem('lang', l); applyLang(); toggleModal(); if(document.getElementById('main-display').style.display === 'block') search(); }
