@@ -235,7 +235,7 @@
             
             <div class="section-h" id="txt-title-24">24 HOURS FORECAST</div>
             <div class="scroll-row" id="hourly-list"></div>
-            <div class="section-h" id="txt-title-7">7 DAYS FORECAST</div>
+            <div class="section-h" id="txt-title-7">14 DAYS FORECAST</div>
             <div class="daily-list" id="daily-list"></div>
         </div>
     </div>
@@ -252,7 +252,7 @@
     <script>
         const translations = {
     'en': { 
-        welcome: "It appears you haven't searched yet", gps: "Use My Location", feels: "FEELS LIKE", uv: "UV INDEX", t24: "24 HOURS FORECAST", t7: "7 DAYS FORECAST", 
+        welcome: "It appears you haven't searched yet", gps: "Use My Location", feels: "FEELS LIKE", uv: "UV INDEX", t24: "24 HOURS FORECAST", t7: "14 DAYS FORECAST", 
         cloud: "CLOUD COVER", wind: "WIND SPEED", hum: "HUMIDITY", pres: "PRESSURE", precip: "PRECIPITATION", aqi: "AIR QUALITY", vis: "VISIBILITY", 
         clean: "Clean", closed: "Closed", soothing: "Soothing", hurricane: "Hurricane", dry: "Dry", flood: "Flood", vis_yes: "Visible", vis_no: "Not visible",
         warn_title: "GOVERNMENT WARNINGS", no_warn: "No warnings yet in that region.",
@@ -260,7 +260,7 @@
         desc: { 1000: "Sunny", 1003: "Mostly clear", 1006: "Partly cloudy", 1009: "Cloudy", 1030: "Mist", 1135: "Fog", 1063: "Patchy rain possible", 1183: "Light rain", 1189: "Moderate rain", 1195: "Heavy rain", 1240: "Light rain showers", 1243: "Rain showers", 1246: "Heavy rain showers", 1087: "Thunderstorm", 1273: "Scattered thunderstorms", 1276: "Heavy thunderstorm", 1213: "Light snow", 1219: "Snow", 1225: "Heavy snow", 1237: "Ice pellets", 1255: "Snow showers", 1114: "Blowing snow", 1204: "Light sleet", 1201: "Moderate rain" } 
     },
     'pt-br': { 
-        welcome: "Parece que você ainda não pesquisou", gps: "Usar Minha Localização", feels: "SENSAÇÃO", uv: "ÍNDICE UV", t24: "PREVISÃO 24 HORAS", t7: "PREVISÃO 7 DIAS", 
+        welcome: "Parece que você ainda não pesquisou", gps: "Usar Minha Localização", feels: "SENSAÇÃO", uv: "ÍNDICE UV", t24: "PREVISÃO 24 HORAS", t7: "PREVISÃO 14 DIAS", 
         cloud: "COBERTURA DE NUVENS", wind: "VELOCIDADE DO VENTO", hum: "UMIDADE", pres: "PRESSÃO", precip: "PRECIPITAÇÃO", aqi: "QUALIDADE DO AR", vis: "VISIBILIDADE",
         clean: "Limpo", closed: "Fechado", soothing: "Calmo", hurricane: "Furacão", dry: "Seco", flood: "Inundação", vis_yes: "Visível", vis_no: "Invisível",
         warn_title: "AVISOS GOVERNAMENTAIS", no_warn: "Sem avisos nesta região.",
@@ -268,7 +268,7 @@
         desc: { 1000: "Sol", 1003: "Sol com pouca nuvem", 1006: "Parcialmente nublado", 1009: "Nublado total", 1030: "Névoa", 1135: "Nevoeiro denso", 1063: "Possibilidade de chuva", 1183: "Chuva leve", 1189: "Chuva moderada", 1195: "Chuva intensa", 1240: "Pancadas leves", 1243: "Pancadas de chuva", 1246: "Pancadas fortes", 1087: "Trovoada", 1273: "Tempestades esparsas", 1276: "Tempestade pesada", 1213: "Pouca neve", 1219: "Neve moderada", 1225: "Neve intensa", 1237: "Granizo", 1255: "Pancadas de neve", 1114: "Neve com vento", 1204: "Chuva com gelo", 1201: "Vento com chuva" } 
     },
     'pt-pt': { 
-        welcome: "Parece que ainda não pesquisou", gps: "Usar Minha Localização", feels: "SENSAÇÃO", uv: "ÍNDICE UV", t24: "PREVISÃO 24 HORAS", t7: "PREVISÃO 7 DIAS", 
+        welcome: "Parece que ainda não pesquisou", gps: "Usar Minha Localização", feels: "SENSAÇÃO", uv: "ÍNDICE UV", t24: "PREVISÃO 24 HORAS", t7: "PREVISÃO 14 DIAS", 
         cloud: "NUVENS", wind: "VELOCIDADE DO VENTO", hum: "HUMIDADE", pres: "PRESSÃO", precip: "PRECIPITAÇÃO", aqi: "QUALIDADE DO AR", vis: "VISIBILIDADE",
         clean: "Limpo", closed: "Cerrado", soothing: "Calmo", hurricane: "Furacão", dry: "Seco", flood: "Cheia", vis_yes: "Visível", vis_no: "Invisível",
         warn_title: "AVISOS GOVERNAMENTAIS", no_warn: "Sem avisos para esta região.",
@@ -276,7 +276,7 @@
         desc: { 1000: "Sol", 1003: "Sol com poucas nuvens", 1006: "Parcialmente nublado", 1009: "Muito nublado", 1030: "Neblina", 1135: "Nevoeiro", 1063: "Possibilidade de aguaceiros", 1183: "Chuva fraca", 1189: "Chuva", 1195: "Chuva forte", 1240: "Aguaceiros fracos", 1243: "Aguaceiros", 1246: "Aguaceiros fortes", 1087: "Trovoada", 1273: "Trovoadas esparsas", 1276: "Trovoada forte", 1213: "Neve fraca", 1219: "Neve", 1225: "Neve forte", 1237: "Granizo", 1255: "Aguaceiros de neve", 1114: "Neve com vento", 1204: "Sleet", 1201: "Vento e chuva" } 
     },
     'es': { 
-        welcome: "Parece que aún no has buscado", gps: "Usar Mi Ubicación", feels: "SENSACIÓN", uv: "ÍNDICE UV", t24: "PRONÓSTICO 24 HORAS", t7: "PRONÓSTICO 7 DÍAS", 
+        welcome: "Parece que aún no has buscado", gps: "Usar Mi Ubicación", feels: "SENSACIÓN", uv: "ÍNDICE UV", t24: "PRONÓSTICO 24 HORAS", t7: "PRONÓSTICO 14 DÍAS", 
         cloud: "COBERTURA DE NUBES", wind: "VELOCIDAD DEL VIENTO", hum: "HUMEDAD", pres: "PRESIÓN", precip: "PRECIPITACIÓN", aqi: "CALIDAD DEL AIRE", vis: "VISIBILIDAD",
         clean: "Limpio", closed: "Cerrado", soothing: "Calmo", hurricane: "Huracán", dry: "Seco", flood: "Inundación", vis_yes: "Visible", vis_no: "No visible",
         warn_title: "AVISOS GUBERNAMENTALES", no_warn: "No hay avisos en esta región.",
