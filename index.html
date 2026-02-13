@@ -142,63 +142,61 @@
         <div style="flex:1; background:#38bdf8"></div> <div style="flex:1; background:#4ade80"></div> <div style="flex:1; background:#facc15"></div> <div style="flex:1; background:#fb923c"></div> <div style="flex:1; background:#ef4444"></div> <div style="flex:1; background:#7f1d1d"></div> </div>
             </div>
             
-
-            <div class="info-card">
+<div class="info-card">
     <small id="txt-cloud">CLOUD COVER</small>
     <div id="cloud-frame" style="position:relative; width:100%; height:70px; overflow:hidden; border-radius:12px; margin-top:10px; background:#38bdf8; border:1px solid rgba(255,255,255,0.1);"></div>
-    
     <div style="display:flex; gap:2px; height:8px; margin-top:12px; border-radius:4px; overflow:hidden;">
-        <div style="flex:1; background:#38bdf8;"></div>
-        <div style="flex:1; background:#0ea5e9;"></div>
-        <div style="flex:1; background:#0284c7;"></div>
-        <div style="flex:1; background:#0369a1;"></div>
-        <div style="flex:1; background:#0c4a6e;"></div>
-        <div style="flex:1; background:#111827;"></div>
-        <div style="flex:1; background:#000000;"></div>
+        <div style="flex:1; background:#38bdf8;"></div> <div style="flex:1; background:#0ea5e9;"></div> <div style="flex:1; background:#0284c7;"></div> <div style="flex:1; background:#0369a1;"></div> <div style="flex:1; background:#0c4a6e;"></div> <div style="flex:1; background:#111827;"></div> <div style="flex:1; background:#000000;"></div>
     </div>
-    
     <div style="display:flex; justify-content:space-between; width:100%; margin-top:5px;">
         <small id="lbl-clean" style="font-size:10px; opacity:0.7;">Clean</small>
         <b id="val-cloud" style="font-size:14px;">0%</b>
         <small id="lbl-closed" style="font-size:10px; opacity:0.7;">Closed</small>
     </div>
-            </div>
+    <div style="margin-top:15px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:12px; padding:10px; backdrop-filter:blur(10px);">
+        <b id="cloud-title" style="display:block; font-size:12px; text-transform:uppercase; color:white;">--</b>
+        <span id="cloud-desc" style="display:block; margin:4px 0 0; font-size:11px; color:rgba(255,255,255,0.8); line-height:1.2;">Waiting...</span>
+    </div>
+</div>
+            
 
             <div class="info-card">
     <small id="txt-wind">WIND</small>
     <div id="wind-frame" style="position:relative; width:100%; height:70px; overflow:hidden; border-radius:12px; margin-top:10px; background:#f0f9ff; border:1px solid rgba(255,255,255,0.1);"></div>
-    
     <div style="display:flex; gap:2px; height:8px; margin-top:12px; border-radius:4px; overflow:hidden;">
-        <div style="flex:1; background:#38bdf8;"></div> <div style="flex:1; background:#4ade80;"></div> <div style="flex:1; background:#facc15;"></div> <div style="flex:1; background:#fb923c;"></div> <div style="flex:1; background:#ef4444;"></div> <div style="flex:1; background:#7f1d1d;"></div> </div>
-    
+        <div style="flex:1; background:#38bdf8;"></div> <div style="flex:1; background:#4ade80;"></div> <div style="flex:1; background:#facc15;"></div> <div style="flex:1; background:#fb923c;"></div> <div style="flex:1; background:#ef4444;"></div> <div style="flex:1; background:#7f1d1d;"></div>
+    </div>
     <div style="display:flex; justify-content:space-between; width:100%; margin-top:5px;">
         <small id="lbl-soothing" style="font-size:10px; opacity:0.7;">Soothing</small>
         <b id="val-wind" style="font-size:14px;">0 km/h</b>
         <small id="lbl-hurricane" style="font-size:10px; opacity:0.7;">Hurricane</small>
     </div>
+    <div style="margin-top:15px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:12px; padding:10px; backdrop-filter:blur(10px);">
+        <b id="wind-title" style="display:block; font-size:12px; text-transform:uppercase; color:white;">--</b>
+        <span id="wind-desc" style="display:block; margin:4px 0 0; font-size:11px; color:rgba(255,255,255,0.8); line-height:1.2;">Waiting...</span>
+    </div>
             </div>
+            
 
             <div class="info-card">
     <small id="txt-precip">PRECIPITATION</small>
     <div id="precip-frame" style="position:relative; width:100%; height:70px; overflow:hidden; border-radius:12px; margin-top:10px; background:#121214; border:1px solid rgba(255,255,255,0.1);">
         <div id="water-level" style="position:absolute; bottom:0; left:0; width:100%; background:rgba(56,189,248,0.5); transition:height 1.5s ease-out; height:0%;"></div>
     </div>
-    
     <div style="display:flex; gap:2px; height:8px; margin-top:12px; border-radius:4px; overflow:hidden;">
-        <div style="flex:1; background:#0c4a6e"></div>
-        <div style="flex:1; background:#075985"></div>
-        <div style="flex:1; background:#0369a1"></div>
-        <div style="flex:1; background:#0284c7"></div>
-        <div style="flex:1; background:#0ea5e9"></div>
-        <div style="flex:1; background:#38bdf8"></div>
+        <div style="flex:1; background:#0c4a6e"></div> <div style="flex:1; background:#075985"></div> <div style="flex:1; background:#0369a1"></div> <div style="flex:1; background:#0284c7"></div> <div style="flex:1; background:#0ea5e9"></div> <div style="flex:1; background:#38bdf8"></div>
     </div>
-    
     <div style="display:flex; justify-content:space-between; width:100%; margin-top:5px;">
         <small id="lbl-dry" style="font-size:10px; opacity:0.7;">Dry</small>
         <b id="val-precip" style="font-size:14px;">0 mm</b>
         <small id="lbl-flood" style="font-size:10px; opacity:0.7;">Flood</small>
     </div>
+    <div style="margin-top:15px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:12px; padding:10px; backdrop-filter:blur(10px);">
+        <b id="precip-title" style="display:block; font-size:12px; text-transform:uppercase; color:white;">--</b>
+        <span id="precip-desc" style="display:block; margin:4px 0 0; font-size:11px; color:rgba(255,255,255,0.8); line-height:1.2;">Waiting...</span>
+    </div>
             </div>
+            
 
             <div class="info-card">
     <small id="txt-aqi">AIR QUALITY</small>
@@ -207,10 +205,17 @@
         <b id="val-aqi" style="font-size:1.5rem;">--</b>
     </div>
     <div style="display:flex; gap:2px; height:8px; margin-top:12px; border-radius:4px; overflow:hidden;">
-        <div style="flex:1; background:#38bdf8;"></div> <div style="flex:1; background:#4ade80;"></div> <div style="flex:1; background:#facc15;"></div> <div style="flex:1; background:#fb923c;"></div> <div style="flex:1; background:#ef4444;"></div> </div>
-</div>
+        <div style="flex:1; background:#38bdf8;"></div> <div style="flex:1; background:#4ade80;"></div> <div style="flex:1; background:#facc15;"></div> <div style="flex:1; background:#fb923c;"></div> <div style="flex:1; background:#ef4444;"></div>
+    </div>
+    <div style="margin-top:15px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:12px; padding:10px; backdrop-filter:blur(10px);">
+        <b id="aqi-title" style="display:block; font-size:12px; text-transform:uppercase; color:white;">--</b>
+        <span id="aqi-desc" style="display:block; margin:4px 0 0; font-size:11px; color:rgba(255,255,255,0.8); line-height:1.2;">Waiting...</span>
+    </div>
+            </div>
+            
 
-<div class="info-card">
+
+            <div class="info-card">
     <small id="txt-vis">VISIBILITY</small>
     <div id="vis-frame" style="position:relative; width:100%; height:80px; overflow:hidden; border-radius:12px; margin-top:10px; background:#7dd3fc; border:1px solid rgba(255,255,255,0.1);">
         <i class="ph-fill ph-sun" style="position:absolute; top:10px; right:20px; color:#facc15; font-size:2rem;"></i>
@@ -218,17 +223,18 @@
         <div id="fog-layer" style="position:absolute; inset:0; background:white; opacity:0; transition:0.8s;"></div>
     </div>
     <div style="display:flex; gap:2px; height:8px; margin-top:12px; border-radius:4px; overflow:hidden;">
-        <div style="flex:1; background:#38bdf8;"></div>
-        <div style="flex:1; background:#bae6fd;"></div>
-        <div style="flex:1; background:#f1f5f9;"></div>
-        <div style="flex:1; background:#ffffff;"></div>
+        <div style="flex:1; background:#38bdf8;"></div> <div style="flex:1; background:#bae6fd;"></div> <div style="flex:1; background:#f1f5f9;"></div> <div style="flex:1; background:#ffffff;"></div>
     </div>
     <div style="display:flex; justify-content:space-between; width:100%; margin-top:5px;">
         <small id="lbl-vis-yes" style="font-size:10px; opacity:0.7;">Visible</small>
         <b id="val-vis" style="font-size:14px;">0 km</b>
         <small id="lbl-vis-no" style="font-size:10px; opacity:0.7;">Not visible</small>
     </div>
-</div>
+    <div style="margin-top:15px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:12px; padding:10px; backdrop-filter:blur(10px);">
+        <b id="vis-title" style="display:block; font-size:12px; text-transform:uppercase; color:white;">--</b>
+        <span id="vis-desc" style="display:block; margin:4px 0 0; font-size:11px; color:rgba(255,255,255,0.8); line-height:1.2;">Waiting...</span>
+    </div>
+            </div>
             
             
             
