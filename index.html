@@ -13,6 +13,10 @@
         #bg-overlay { position: fixed; inset: 0; background: linear-gradient(to bottom, rgba(255,255,255,0.4) 0%, rgba(0,0,0,0.7) 100%); z-index: -1; transition: background 2s ease; }
         #weather-canvas { position: fixed; inset: 0; pointer-events: none; z-index: -1; }
         .night-mask { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: -1; display: none; }
+
+        /* COBERTURA DE NUVENS */
+        @keyframes moveCloud { from { right: -60px; } to { right: 110%; } }
+.frame-cloud-icon { position: absolute; animation: moveCloud linear infinite; pointer-events: none; }
         
         /* EFEITOS DE CLIMA */
         .lightning-flash { position: fixed; inset: 0; background: white; opacity: 0; z-index: 10; pointer-events: none; }
@@ -112,6 +116,28 @@
                     <b id="val-pres" style="font-size: 1.3rem; margin-top:8px">-- hPa</b>
                 </div>
             </div>
+
+            <div class="info-card">
+    <small>CLOUD COVER</small>
+    <div id="cloud-frame" style="position:relative; width:100%; height:70px; overflow:hidden; border-radius:12px; margin-top:10px; background:#38bdf8; border:1px solid rgba(255,255,255,0.1);"></div>
+    
+    <div style="display:flex; gap:2px; height:8px; margin-top:12px; border-radius:4px; overflow:hidden;">
+        <div style="flex:1; background:#38bdf8;"></div>
+        <div style="flex:1; background:#0ea5e9;"></div>
+        <div style="flex:1; background:#0284c7;"></div>
+        <div style="flex:1; background:#0369a1;"></div>
+        <div style="flex:1; background:#0c4a6e;"></div>
+        <div style="flex:1; background:#111827;"></div>
+        <div style="flex:1; background:#000000;"></div>
+    </div>
+    
+    <div style="display:flex; justify-content:space-between; width:100%; margin-top:5px;">
+        <small style="font-size:10px; opacity:0.7;">Clean</small>
+        <b id="val-cloud" style="font-size:14px;">0%</b>
+        <small style="font-size:10px; opacity:0.7;">Closed</small>
+    </div>
+            </div>
+            
             <div class="section-h" id="txt-title-24">24 HOURS FORECAST</div>
             <div class="scroll-row" id="hourly-list"></div>
             <div class="section-h" id="txt-title-7">7 DAYS FORECAST</div>
@@ -435,6 +461,39 @@
         
         const hum = w.current.relative_humidity_2m; 
         document.getElementById('val-hum').innerText = hum + "%"; 
+        const clPct = d.current.cloud;
+document.getElementById('val-cloud').innerText = clPct + "%";
+const cFr = document.getElementById('cloud-frame');
+cFr.innerHTML = '';
+// Ajusta a cor do frame: do azul (dia) ao preto (conforme nuvens e se for noite)
+const brght = d.current.is_day ? (100 - (clPct * 0.6)) : (20 - (clPct * 0.2));
+cFr.style.background = `hsl(200, 90%, ${brght}%)`;
+
+// Sua tabela de lógica
+let nCnt = 0, nSpd = 30;
+if(clPct >= 100) { nCnt = 30; nSpd = 4; }
+else if(clPct >= 95) { nCnt = 22; nSpd = 8; }
+else if(clPct >= 85) { nCnt = 20; nSpd = 9; }
+else if(clPct >= 70) { nCnt = 17; nSpd = 10; }
+else if(clPct >= 50) { nCnt = 10; nSpd = 14; }
+else if(clPct >= 35) { nCnt = 7; nSpd = 16; }
+else if(clPct >= 20) { nCnt = 5; nSpd = 17; }
+else if(clPct >= 10) { nCnt = 4; nSpd = 17; }
+else if(clPct > 0) { nCnt = 2; nSpd = 20; }
+else if(clPct === 0) { nCnt = 1; nSpd = 30; }
+
+// Gerar nuvens no frame
+for(let i=0; i<nCnt; i++) {
+    const cloudImg = document.createElement('img');
+    cloudImg.src = weatherMeta[1003].dayIcon; // Usa seu ícone de nuvem
+    cloudImg.className = 'frame-cloud-icon';
+    cloudImg.style.top = Math.random() * 60 + "%";
+    cloudImg.style.width = (Math.random() * 20 + 15) + "px";
+    cloudImg.style.opacity = d.current.is_day ? "0.9" : "0.4";
+    cloudImg.style.animationDuration = (Math.random() * 5 + nSpd) + "s";
+    cloudImg.style.animationDelay = `-${Math.random() * 25}s`;
+    cFr.appendChild(cloudImg);
+}
         document.getElementById('hum-prog').style.strokeDashoffset = 188.5 - (188.5 * hum / 100); 
         
         const uv = w.current.uv_index; 
