@@ -110,7 +110,7 @@
                         <svg><circle class="bg-c" cx="35" cy="35" r="30"></circle><circle id="hum-prog" class="prog-c" cx="35" cy="35" r="30"></circle></svg>
                         <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:1rem; font-weight:600" id="val-hum">0%</div>
                     </div>
-                    <small style="opacity:0.6; margin-top:10px">HUMIDITY</small>
+                    <small id="txt-hum" style="opacity:0.6; margin-top:10px">HUMIDITY</small>
                 </div>
                 <div class="card">
                     <div style="width:100%; display:flex; justify-content:space-between; align-items:center">
@@ -125,13 +125,13 @@
                 </div>
                 <div class="card">
                     <i class="ph ph-wind" style="color:#a78bfa; font-size:1.8rem"></i>
-                    <small style="opacity:0.6; margin-top:8px">PRESSURE</small>
+                    <small id="txt-pres" style="opacity:0.6; margin-top:8px">PRESSURE</small>
                     <b id="val-pres" style="font-size: 1.3rem; margin-top:8px">-- hPa</b>
                 </div>
             </div>
 
             <div class="info-card">
-    <small>CLOUD COVER</small>
+    <small id="txt-cloud">CLOUD COVER</small>
     <div id="cloud-frame" style="position:relative; width:100%; height:70px; overflow:hidden; border-radius:12px; margin-top:10px; background:#38bdf8; border:1px solid rgba(255,255,255,0.1);"></div>
     
     <div style="display:flex; gap:2px; height:8px; margin-top:12px; border-radius:4px; overflow:hidden;">
@@ -145,23 +145,23 @@
     </div>
     
     <div style="display:flex; justify-content:space-between; width:100%; margin-top:5px;">
-        <small style="font-size:10px; opacity:0.7;">Clean</small>
+        <small id="lbl-clean" style="font-size:10px; opacity:0.7;">Clean</small>
         <b id="val-cloud" style="font-size:14px;">0%</b>
-        <small style="font-size:10px; opacity:0.7;">Closed</small>
+        <small id="lbl-closed" style="font-size:10px; opacity:0.7;">Closed</small>
     </div>
             </div>
 
             <div class="info-card">
-    <small>WIND</small>
+    <small id="txt-wind">WIND</small>
     <div id="wind-frame" style="position:relative; width:100%; height:70px; overflow:hidden; border-radius:12px; margin-top:10px; background:#f0f9ff; border:1px solid rgba(255,255,255,0.1);"></div>
     
     <div style="display:flex; gap:2px; height:8px; margin-top:12px; border-radius:4px; overflow:hidden;">
         <div style="flex:1; background:#38bdf8;"></div> <div style="flex:1; background:#4ade80;"></div> <div style="flex:1; background:#facc15;"></div> <div style="flex:1; background:#fb923c;"></div> <div style="flex:1; background:#ef4444;"></div> <div style="flex:1; background:#7f1d1d;"></div> </div>
     
     <div style="display:flex; justify-content:space-between; width:100%; margin-top:5px;">
-        <small style="font-size:10px; opacity:0.7;">Soothing</small>
+        <small id="lbl-soothing" style="font-size:10px; opacity:0.7;">Soothing</small>
         <b id="val-wind" style="font-size:14px;">0 km/h</b>
-        <small style="font-size:10px; opacity:0.7;">Hurricane</small>
+        <small id="lbl-hurricane" style="font-size:10px; opacity:0.7;">Hurricane</small>
     </div>
             </div>
             
