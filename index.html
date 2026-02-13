@@ -479,8 +479,8 @@ document.getElementById('val-cloud').innerText = clPct + "%";
 const cFr = document.getElementById('cloud-frame');
 cFr.innerHTML = '';
 // Ajusta a cor do frame: do azul (dia) ao preto (conforme nuvens e se for noite)
-const brght = d.current.is_day ? (70 - (clPct * 0.4)) : (20 - (clPct * 0.2));
-cFr.style.background = `hsl(200, 90%, ${brght}%)`;
+const brght = d.current.is_day ? (60 - (clPct * 0.6)) : (20 - (clPct * 0.2));
+cf.style.background = `hsl(199, 92%, ${Math.max(0, brght)}%)`;
 
 // Sua tabela de lógica
 let nCnt = 0, nSpd = 30;
