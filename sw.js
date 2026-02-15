@@ -1,5 +1,5 @@
 const CACHE_NAME = 'catsblock-v3.2'; 
-const changelog = "• Bug fix - catsblock-weather-v3.2 | 02/15/2026 \n 1. the search button fixed \n 2. The update log has been corrected and is now picking up new updates instead of old ones."; // Descreva as mudanças aqui
+const changelog = "• Bug fix - catsblock-weather-v3.2 | 02/15/2026 \n 1. the locate button fixed \n 2. The update log has been corrected and is now picking up new updates instead of old ones."; // Descreva as mudanças aqui
 
 self.addEventListener('install', (event) => {
     // Removido o skipWaiting daqui!
