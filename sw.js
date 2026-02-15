@@ -1,5 +1,5 @@
 const CACHE_NAME = 'catsblock-v3'; 
-const changelog = "• Updated icons and weather settings to avoid confusion - catsblock-weather-v2 \n 1. New icons and climates, mixed rain hail sleet and mixed rain snow"; // Descreva as mudanças aqui
+const changelog = "• Updated icons and weather settings to avoid confusion - catsblock-weather-v3 | 02/15/2026 \n 1. New icons and climates, mixed rain hail sleet and mixed rain snow"; // Descreva as mudanças aqui
 
 self.addEventListener('install', (event) => {
     // Removido o skipWaiting daqui!
