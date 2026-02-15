@@ -690,6 +690,64 @@ for(let i=0; i<nCnt; i++) {
         function setLang(l) { currentLang = l; localStorage.setItem('lang', l); applyLang(); toggleModal(); if(document.getElementById('main-display').style.display === 'block') search(); }
         
         applyLang();
+
+        if ('serviceWorker' in navigator) {
+
+        navigator.serviceWorker.register('sw.js').then(reg => {
+
+            const promptUpdate = () => {
+
+                if (confirm("The website has a new update! Click yes to update.")) {
+
+                    if (reg.waiting) {
+
+                        reg.waiting.postMessage({ type: 'SKIP_WAITING' });
+
+                    }
+
+                }
+
+            };
+
+
+
+            if (reg.waiting) promptUpdate();
+
+
+
+            reg.addEventListener('updatefound', () => {
+
+                const newWorker = reg.installing;
+
+                newWorker.addEventListener('statechange', () => {
+
+                    if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+
+                        promptUpdate();
+
+                    }
+
+                });
+
+            });
+
+        });
+
+
+
+        let refreshing;
+
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+
+            if (refreshing) return;
+
+            window.location.reload();
+
+            refreshing = true;
+
+        });
+
+        }
     </script>
 </body>
 </html>
