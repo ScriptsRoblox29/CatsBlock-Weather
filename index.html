@@ -744,15 +744,26 @@ for(let i=0; i<nCnt; i++) {
     navigator.serviceWorker.register('sw.js').then(reg => {
         
         const promptUpdate = () => {
-            // Pergunta ao Service Worker quais são as novidades
-            const controller = navigator.serviceWorker.controller;
-            if (controller) {
-                controller.postMessage({ type: 'GET_CHANGELOG' });
-            } else {
-                // Caso não consiga pegar o changelog, mostra o aviso padrão
-                showConfirm("New updates available!");
+    // O segredo está aqui: pegamos o worker que está ESPERANDO (o novo)
+    // Se não tiver um esperando, pegamos o que está instalando
+    const newWorker = reg.waiting || reg.installing;
+
+    if (newWorker) {
+        // Criamos um canal de mensagem direto com o novo worker
+        const messageChannel = new MessageChannel();
+        
+        messageChannel.port1.onmessage = (event) => {
+            if (event.data.type === 'SEND_CHANGELOG') {
+                showConfirm(event.data.text);
             }
         };
+
+        // Enviamos a pergunta para o NOVO, não para o antigo
+        newWorker.postMessage({ type: 'GET_CHANGELOG' }, [messageChannel.port2]);
+    } else {
+        showConfirm("New updates available!");
+    }
+};
 
         // Função para mostrar o confirm com o texto recebido
         const showConfirm = (text) => {
