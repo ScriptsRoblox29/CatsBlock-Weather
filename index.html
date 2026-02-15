@@ -692,62 +692,56 @@ for(let i=0; i<nCnt; i++) {
         applyLang();
 
         if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').then(reg => {
+        
+        const promptUpdate = () => {
+            // Pergunta ao Service Worker quais são as novidades
+            const controller = navigator.serviceWorker.controller;
+            if (controller) {
+                controller.postMessage({ type: 'GET_CHANGELOG' });
+            } else {
+                // Caso não consiga pegar o changelog, mostra o aviso padrão
+                showConfirm("New updates available!");
+            }
+        };
 
-        navigator.serviceWorker.register('sw.js').then(reg => {
-
-            const promptUpdate = () => {
-
-                if (confirm("The website has a new update! Click yes to update.")) {
-
-                    if (reg.waiting) {
-
-                        reg.waiting.postMessage({ type: 'SKIP_WAITING' });
-
-                    }
-
+        // Função para mostrar o confirm com o texto recebido
+        const showConfirm = (text) => {
+            const msg = `The website has a new update!\n\n${text}\n\nClick OK to update now.`;
+            if (confirm(msg)) {
+                if (reg.waiting) {
+                    reg.waiting.postMessage({ type: 'SKIP_WAITING' });
                 }
+            }
+        };
 
-            };
+        // Escuta a resposta do Service Worker com o texto das mudanças
+        navigator.serviceWorker.addEventListener('message', event => {
+            if (event.data.type === 'SEND_CHANGELOG') {
+                showConfirm(event.data.text);
+            }
+        });
 
+        if (reg.waiting) promptUpdate();
 
-
-            if (reg.waiting) promptUpdate();
-
-
-
-            reg.addEventListener('updatefound', () => {
-
-                const newWorker = reg.installing;
-
-                newWorker.addEventListener('statechange', () => {
-
-                    if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-
-                        promptUpdate();
-
-                    }
-
-                });
-
+        reg.addEventListener('updatefound', () => {
+            const newWorker = reg.installing;
+            newWorker.addEventListener('statechange', () => {
+                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                    promptUpdate();
+                }
             });
-
         });
+    });
 
-
-
-        let refreshing;
-
-        navigator.serviceWorker.addEventListener('controllerchange', () => {
-
-            if (refreshing) return;
-
-            window.location.reload();
-
-            refreshing = true;
-
-        });
-
+    let refreshing;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (refreshing) return;
+        window.location.reload();
+        refreshing = true;
+    });
         }
+        
     </script>
 </body>
 </html>
